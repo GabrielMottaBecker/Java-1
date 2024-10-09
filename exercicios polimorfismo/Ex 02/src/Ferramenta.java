@@ -1,0 +1,3 @@
+interface Ferramenta {
+    void usar();
+}
