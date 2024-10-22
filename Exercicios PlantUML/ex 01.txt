@@ -1,0 +1,31 @@
+@startuml
+interface Imprimivel {
+  + imprimir()
+}
+
+abstract class ContaBancaria {
+  - int numeroConta
+  # double saldo
+  + depositar(double valor)
+  + sacar(double valor)
+  + getSaldo(): double
+}
+
+class ContaCorrente extends ContaBancaria implements Imprimivel {
+  - double limiteChequeEspecial
+  + imprimir()
+}
+
+class ContaPoupanca extends ContaBancaria implements Imprimivel {
+  + calcularJuros()
+  + imprimir()
+}
+
+class Cliente {
+  - String nome
+  - String cpf
+  + Cliente(String nome, String cpf)
+}
+
+Cliente *-- ContaBancaria : "1..*"
+@enduml

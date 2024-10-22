@@ -1,0 +1,44 @@
+@startuml
+abstract class ItemBiblioteca {
+  - String titulo
+  - String codigo
+}
+
+class Livro extends ItemBiblioteca implements Reservavel {
+  + reservar()
+  + cancelarReserva()
+}
+
+class Revista extends ItemBiblioteca {
+}
+
+class DVD extends ItemBiblioteca implements Reservavel {
+  + reservar()
+  + cancelarReserva()
+}
+
+class Autor {
+  - String nome
+}
+
+class Usuario {
+  - String nome
+  - String idUsuario
+}
+
+class Emprestimo {
+  - Date dataEmprestimo
+  - Date dataDevolucao
+  + realizarEmprestimo(Usuario usuario, ItemBiblioteca item)
+  + encerrarEmprestimo()
+}
+
+interface Reservavel {
+  + reservar()
+  + cancelarReserva()
+}
+
+Livro "many" -- "many" Autor : "escreveu"
+Emprestimo --> Usuario
+Emprestimo --> ItemBiblioteca
+@enduml

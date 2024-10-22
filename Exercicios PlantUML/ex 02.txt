@@ -1,0 +1,42 @@
+@startuml
+class Produto {
+  - String nome
+  - double preco
+  - int estoque
+}
+
+class CarrinhoDeCompras {
+  + adicionarProduto(Produto produto)
+  + removerProduto(Produto produto)
+}
+
+class Cliente {
+  - String nome
+  - String cpf
+  + getNome()
+  + getCpf()
+}
+
+class Pedido {
+  - int numeroPedido
+  + adicionarCarrinho(CarrinhoDeCompras carrinho)
+  + setCliente(Cliente cliente)
+}
+
+interface Pagavel {
+  + processarPagamento()
+}
+
+class PagamentoCartao implements Pagavel {
+  + processarPagamento()
+}
+
+class PagamentoBoleto implements Pagavel {
+  + processarPagamento()
+}
+
+Pedido --> Cliente
+Pedido --> CarrinhoDeCompras
+Pedido --> Pagavel
+CarrinhoDeCompras o-- Produto
+@enduml
